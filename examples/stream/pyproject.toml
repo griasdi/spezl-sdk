@@ -1,0 +1,11 @@
+[project]
+name = "spezl-example-stream"
+version = "0.1.0"
+requires-python = ">=3.10"
+dependencies = ["spezl"]
+
+[tool.uv]
+package = false
+
+[tool.uv.sources]
+spezl = { path = "../../sdk/python", editable = true }
