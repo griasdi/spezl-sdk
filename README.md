@@ -87,6 +87,31 @@ uv, through `[tool.uv.sources] spezl = { path = "../../../sdk/python", editable 
 The SDK is in `sdk/typescript`. It uses only `node:` modules and runs without a build step on
 Node ≥ 22.18 and on Bun.
 
+In your own project, with this repository cloned next to it:
+
+```sh
+npm install ../spezl-sdk/sdk/typescript   # then: import { Bot } from "@griasdi/spezl";
+npm install -D typescript @types/node
+```
+
+Your `package.json` needs `"type": "module"`. The SDK comes as TypeScript source, so `tsc`
+checks it with your project's settings; without these two it reports errors inside the SDK
+(Node types missing, `.ts` import extensions), while the editor still completes everything:
+
+```json
+{
+  "compilerOptions": {
+    "strict": true,
+    "noEmit": true,
+    "module": "nodenext",
+    "types": ["node"],
+    "allowImportingTsExtensions": true
+  }
+}
+```
+
+The examples here import the SDK by its path instead (`../../../sdk/typescript/src/index.ts`).
+
 ```ts
 import { Bot } from "../../../sdk/typescript/src/index.ts";
 
