@@ -2,9 +2,15 @@
 name = "spezl"
 version = "0.1.0"
 description = "Bot SDK for griasdi: talks JSON-RPC to the `spezl serve` sidecar"
+readme = "README.md"
 requires-python = ">=3.10"
 license = "MIT"
+license-files = ["LICENSE"]
 dependencies = []
+
+[project.urls]
+Homepage = "https://griasdi.github.io/bots/"
+Repository = "https://github.com/griasdi/spezl-sdk"
 
 [build-system]
 requires = ["uv_build>=0.13,<0.14"]

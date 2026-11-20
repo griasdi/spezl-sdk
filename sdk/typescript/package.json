@@ -1,11 +1,24 @@
 {
   "name": "@griasdi/spezl",
   "version": "0.1.0",
+  "description": "Bot SDK for griasdi: talks JSON-RPC to the spezl serve sidecar",
   "license": "MIT",
-  "private": true,
+  "homepage": "https://griasdi.github.io/bots/",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/griasdi/spezl-sdk.git",
+    "directory": "sdk/typescript"
+  },
   "type": "module",
   "exports": {
-    ".": "./src/index.ts"
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "files": ["dist"],
+  "publishConfig": {
+    "access": "public"
   },
   "engines": {
     "node": ">=22.18"
@@ -15,6 +28,8 @@
     "@types/node": "^22"
   },
   "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "prepack": "npm run build",
     "check": "tsc -p .",
     "test": "node --test test/*.test.ts"
   }

@@ -19,7 +19,12 @@ Changes are welcome: the checks run without a griasdi server, see
 
 ## Python
 
-The SDK is in `sdk/python`, uses only the standard library and needs Python ≥ 3.10.
+The SDK is in `sdk/python`, uses only the standard library and needs Python ≥ 3.10. It is on
+PyPI as `spezl`:
+
+```sh
+pip install spezl   # or: uv add spezl
+```
 
 ```python
 import spezl
@@ -84,31 +89,15 @@ uv, through `[tool.uv.sources] spezl = { path = "../../../sdk/python", editable 
 
 ## TypeScript
 
-The SDK is in `sdk/typescript`. It uses only `node:` modules and runs without a build step on
-Node ≥ 22.18 and on Bun.
-
-In your own project, with this repository cloned next to it:
+The SDK is in `sdk/typescript`. It uses only `node:` modules and runs on Node ≥ 22.18 and on
+Bun. It is on npm as `@griasdi/spezl`, compiled to JavaScript with type declarations:
 
 ```sh
-npm install ../spezl-sdk/sdk/typescript   # then: import { Bot } from "@griasdi/spezl";
-npm install -D typescript @types/node
+npm install @griasdi/spezl   # then: import { Bot } from "@griasdi/spezl";
+npm install -D typescript @types/node   # optional, to typecheck your bot
 ```
 
-Your `package.json` needs `"type": "module"`. The SDK comes as TypeScript source, so `tsc`
-checks it with your project's settings; without these two it reports errors inside the SDK
-(Node types missing, `.ts` import extensions), while the editor still completes everything:
-
-```json
-{
-  "compilerOptions": {
-    "strict": true,
-    "noEmit": true,
-    "module": "nodenext",
-    "types": ["node"],
-    "allowImportingTsExtensions": true
-  }
-}
-```
+Your `package.json` needs `"type": "module"`.
 
 The examples here import the SDK by its path instead (`../../../sdk/typescript/src/index.ts`).
 
