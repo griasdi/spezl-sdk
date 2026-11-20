@@ -90,10 +90,10 @@ uv, through `[tool.uv.sources] spezl = { path = "../../../sdk/python", editable 
 ## TypeScript
 
 The SDK is in `sdk/typescript`. It uses only `node:` modules and runs on Node ≥ 22.18 and on
-Bun. It is on npm as `@griasdilab/spezl`, compiled to JavaScript with type declarations:
+Bun. It is on npm as `@griasdilabs/spezl`, compiled to JavaScript with type declarations:
 
 ```sh
-npm install @griasdilab/spezl   # then: import { Bot } from "@griasdilab/spezl";
+npm install @griasdilabs/spezl   # then: import { Bot } from "@griasdilabs/spezl";
 npm install -D typescript @types/node   # optional, to typecheck your bot
 ```
 

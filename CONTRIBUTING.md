@@ -55,7 +55,7 @@ use another product's brand colors or marks.
 
 ## Releasing
 
-The TypeScript SDK is on npm as `@griasdilab/spezl`, the Python SDK on PyPI as
+The TypeScript SDK is on npm as `@griasdilabs/spezl`, the Python SDK on PyPI as
 `spezl`. Both share one version. To release `X.Y.Z`:
 
 1. `cd sdk/typescript && npm version X.Y.Z --no-git-tag-version`

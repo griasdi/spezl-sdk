@@ -1,5 +1,5 @@
 {
-  "name": "@griasdilab/spezl",
+  "name": "@griasdilabs/spezl",
   "version": "0.1.1",
   "description": "Bot SDK for griasdi: talks JSON-RPC to the spezl serve sidecar",
   "license": "MIT",
