@@ -53,6 +53,23 @@ or voice product or position griasdi against one ("like X", "an X
 alternative") in code, comments, UI text, docs or commit messages, and never
 use another product's brand colors or marks.
 
+## Releasing
+
+The TypeScript SDK is on npm as `@griasdilab/spezl`, the Python SDK on PyPI as
+`spezl`. Both share one version. To release `X.Y.Z`:
+
+1. `cd sdk/typescript && npm version X.Y.Z --no-git-tag-version`
+2. Set `version = "X.Y.Z"` in `sdk/python/pyproject.toml`.
+3. Run `uv lock` in each Python example folder (`examples/hello/python`,
+   `examples/poll/python`, `examples/raid`, `examples/mickey`,
+   `examples/stream`, `examples/welcome`).
+4. Commit `Release X.Y.Z`, then
+   `git tag vX.Y.Z && git push origin main vX.Y.Z`.
+
+The tag starts the `release` workflow (`.github/workflows/release.yml`): it
+runs the checks, then publishes both SDKs through trusted publishing. Nobody
+holds a registry token.
+
 ## Commits
 
 One logical change per commit. The subject is a plain summary: imperative

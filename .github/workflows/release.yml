@@ -1,0 +1,55 @@
+name: release
+on:
+  push:
+    tags: ["v*"]
+permissions:
+  contents: read
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7.0.1
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1  # v7.1.0
+        with:
+          node-version: 24
+          package-manager-cache: false
+      - name: Versions match the tag
+        run: |
+          v="${GITHUB_REF_NAME#v}"
+          npm_v=$(node -p 'require("./sdk/typescript/package.json").version')
+          py_v=$(python3 -c 'import tomllib; print(tomllib.load(open("sdk/python/pyproject.toml", "rb"))["project"]["version"])')
+          echo "tag $v, npm $npm_v, pypi $py_v"
+          test "$npm_v" = "$v" && test "$py_v" = "$v"
+      - name: Python SDK
+        working-directory: sdk/python
+        run: python3 -m unittest discover -s tests
+      - name: TypeScript SDK
+        working-directory: sdk/typescript
+        run: npm ci && npm run check && npm test
+  pypi:
+    needs: check
+    runs-on: ubuntu-latest
+    environment: release
+    permissions:
+      id-token: write
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7.0.1
+      - uses: astral-sh/setup-uv@68559e99cc807c1eb7e9238fd43a15bba460eec2  # v10.3.3
+      - working-directory: sdk/python
+        run: uv build && uv publish --trusted-publishing always
+  npm:
+    needs: check
+    runs-on: ubuntu-latest
+    environment: release
+    permissions:
+      id-token: write
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7.0.1
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1  # v7.1.0
+        with:
+          node-version: 24
+          registry-url: https://registry.npmjs.org
+          package-manager-cache: false
+      - run: npm install -g npm@11  # trusted publishing needs npm >= 11.5.1
+      - working-directory: sdk/typescript
+        run: npm ci && npm publish
