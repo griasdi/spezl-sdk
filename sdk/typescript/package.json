@@ -1,6 +1,6 @@
 {
   "name": "@griasdilab/spezl",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Bot SDK for griasdi: talks JSON-RPC to the spezl serve sidecar",
   "license": "MIT",
   "homepage": "https://griasdi.github.io/bots/",
@@ -16,7 +16,9 @@
       "default": "./dist/index.js"
     }
   },
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "publishConfig": {
     "access": "public"
   },
