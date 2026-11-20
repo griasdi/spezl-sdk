@@ -1,17 +1,17 @@
-# @griasdi/spezl
+# @griasdilab/spezl
 
 The TypeScript SDK for [spezl](https://griasdi.github.io/bots/), the bot runner of griasdi. It
 has no dependencies, runs on Node ≥ 22.18 and on Bun, and needs the `spezl` program: download
 it from https://griasdi.github.io/bots/.
 
 ```sh
-npm install @griasdi/spezl
+npm install @griasdilab/spezl
 ```
 
 Your `package.json` needs `"type": "module"`.
 
 ```ts
-import { Bot } from "@griasdi/spezl";
+import { Bot } from "@griasdilab/spezl";
 
 const bot = new Bot(); // new Bot({ home, binary }) overrides SPEZL_HOME / SPEZL_BIN
 bot.onReady((server) => console.log(`${bot.name} ready on ${server}`));
